@@ -29,7 +29,9 @@ counter_coding = 0
 counter_mail = 0
 counter_selen = 0
 counter_rock = 0
-mails = ["mutkumese", "cinkirm999", "omerozler8", "spaci", "example"]
+index_webData = 0
+index_screenshot = 0
+mails = ["mutkumese", "cinkirm9999", "examplee", "spacii", "example"] #ToDo: Change addresses to send mail
 
 
 #  get buttons
@@ -169,7 +171,7 @@ while True:
 
             elif button == "mail":
                 if counter_mail == 0:
-                    os.system("start C:\\Users\\Utku\\Desktop\\Posta.lnk")
+                    os.system("start C:\\Users\\Utku\\Desktop\\Posta.lnk") #ToDo: Change the path of the your mail program
                     time.sleep(2)
                     for i in range(3):
                         keyboard.press(Key.tab)
@@ -239,7 +241,7 @@ while True:
 
             elif button == "selenium":
                 if counter_selen == 0:
-                    driver = webdriver.Chrome(r"C:\Users\Utku\Downloads\chromedriver_win32\chromedriver.exe")
+                    driver = webdriver.Chrome(r"C:\Users\Utku\Downloads\chromedriver_win32\chromedriver.exe") #ToDo: Change the path of the your web driver
                     driver.set_window_size(1150, 540)
                     driver.set_window_position(0, 0)
                     driver.get("https://www.isyatirim.com.tr/tr-tr/analiz/hisse/Sayfalar/default.aspx")
@@ -248,7 +250,7 @@ while True:
 
                     rows = table.find_elements(By.TAG_NAME, "tr")
 
-                    file = open("C:\\Users\\Utku\\Desktop\\Proje\\Web-Data\\hisse_senedi_bilgileri.txt", "w")
+                    file = open("webData\\hisse_senedi_bilgileri" + str(index_webData) + ".txt", "w")
                     file.write(f"VERİ TARİHİ: {datetime.now()}\n")
                     file.write("\n")
 
@@ -275,21 +277,24 @@ while True:
                     file.close()
 
                     driver.quit()
-                    os.startfile(r"C:\Users\Utku\Desktop\Proje\Web-Data")
+                    os.startfile(r"webData")
+                    index_webData += 1
                     counter_selen += 1
 
             elif button == "screenshot":
                 if counter_portf == 0:
                     myScreenshot = pyautogui.screenshot()
-                    os.startfile(r"C:\Users\Utku\Desktop\Proje\Screenshots")
-                    myScreenshot.save(r'C:\Users\Utku\Desktop\Proje\Screenshots\screenshot.png')
+                    os.startfile(r"Screenshots")
+                    myScreenshot.save(r'screenshots\screenshot' + str(index_screenshot) + '.png')
+                    index_screenshot += 1
                     counter_portf += 1;
 
             elif button == "coding":
                 if counter_coding == 0:
-                    os.system("start C:\\Users\\Utku\\AppData\\Local\\Programs\\MicrosoftVSCode\\Code.exe")
+                    os.system("start C:\\Users\\Utku\\AppData\\Local\\Programs\\MicrosoftVSCode\\Code.exe") #ToDo: Change the path of the your code editor
                     time.sleep(0.5)
-                    os.system("start C:\\Users\\Utku\\Desktop\\Spotify.lnk")
+                    os.system("start C:\\Users\\Utku\\Desktop\\Spotify.lnk") #ToDo: Change the path your spotify
+                    #webbrowser.open('youtube playlist link') #ToDo: Or open a music in youtube
                     time.sleep(2)
                     for i in range(2):
                         keyboard.press(Key.tab)
